@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="loginViewModel"
+                type="com.company.app.mvvm.viewmodels.LoginViewModel" />
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="@string/phone_hint"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:text="@{loginViewModel.phoneNumber}"
+                android:onTextChanged="@{(text, start, before, count) -> loginViewModel.phoneNumberListener(text)}"/>
+
+        <Button android:id="@+id/getSMSCodeButton"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:text="@string/get_sms"
+                android:onClick="@{() -> loginViewModel.getSMSCode()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</layout>

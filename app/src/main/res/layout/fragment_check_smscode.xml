@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="checkSMSViewModel"
+                type="com.company.app.mvvm.viewmodels.CheckSMSViewModel" />
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="@string/sms_code"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:text="@{checkSMSViewModel.getSMSCode()}"
+                android:onTextChanged="@{(text, start, before, count) -> checkSMSViewModel.smsCodeListener(text)}"/>
+
+        <Button android:id="@+id/verifySMSCodeButton"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:text="@string/check_sms"
+                android:onClick="@{() -> checkSMSViewModel.verifySMSCode()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</layout>
